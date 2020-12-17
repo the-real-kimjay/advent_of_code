@@ -3,7 +3,7 @@ import sys
 
 def main():
     input_lines = get_input()
-    max_seat,my_seat = process_passes((input_lines))
+    max_seat,my_seat = process_passes(input_lines)
 
     print('Max seat_id = ' + str(max_seat))
     print('My seat_id = ' + str(my_seat))
