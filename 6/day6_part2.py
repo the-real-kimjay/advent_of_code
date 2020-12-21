@@ -9,8 +9,7 @@ def main():
 
 
 def count_answers(answer_list):
-    anyone_answer_count = 0
-    everyone_answer_count = 0
+    anyone_answer_count = everyone_answer_count = 0
     anyone_answers = []
     everyone_answers = []
 
