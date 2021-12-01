@@ -8,6 +8,7 @@ def main():
     total_count,count_list = get_counts(rules,bag)
     print('Part 1 = ' + str(outer_bag_count))
     print('Part 2 = ' + str(count_list))
+    print('Total should match part two above: ' + str(total_count))
 
 
 def get_rules(lines):
@@ -33,7 +34,7 @@ def get_parents(rules,bag,parents=[]):
 def get_counts(rules,bag,parent_count=1,total_count=0,count_list=[]):
     for child,count in rules[bag].items():
         child_count = parent_count * (count)
-        # total_count +=  child_count
+        total_count +=  child_count
         count_list.append(child_count)
         get_counts(rules,child,child_count,total_count,count_list)
 
