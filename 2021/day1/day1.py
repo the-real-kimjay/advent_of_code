@@ -6,8 +6,7 @@ def get_input():
         return [int(line) for line in f]
 
 
-def get_increases(n):
-    depths = get_input()
+def get_increases(n, depths=get_input()):
     increases = 0
     for i in range(n, len(depths)):
         if depths[i] > depths[i-n]:
