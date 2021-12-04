@@ -44,11 +44,11 @@ def get_first_last_board():
     winning_boards = []
 
     for n in range(6, len(numbers)):
-        selected = numbers[:n]
+        drawn_numbers = numbers[:n]
         for i, board in enumerate(boards):
-            winning = check_board(selected, board)
+            winning = check_board(drawn_numbers, board)
             if winning:
-                winning_boards.append({'board': board, 'numbers': selected})
+                winning_boards.append({'board': board, 'numbers': drawn_numbers})
                 del(boards[i])
 
     return winning_boards[0], winning_boards[-1]
