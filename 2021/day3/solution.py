@@ -7,10 +7,10 @@ def get_input():
 
 
 def get_gamma_epsilon(i, input_list, gamma, epsilon):
-    threshold = len(input_list)
-    bit = sum([int(_[i]) for _ in input_list])
-    gamma += '1' if bit >= threshold / 2 else '0'
-    epsilon += '0' if bit >= threshold / 2 else '1'
+    threshold = len(input_list) / 2
+    bit = sum([int(x[i]) for x in input_list])
+    gamma += '1' if bit >= threshold else '0'
+    epsilon += '0' if bit >= threshold else '1'
     return gamma, epsilon
 
 
