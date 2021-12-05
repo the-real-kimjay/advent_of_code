@@ -4,26 +4,19 @@ import numpy as np
 
 def get_input():
     with open(sys.argv[1], 'r') as f:
-        return [line.strip() for line in f]
+        return [line.strip() for line in f if line != '\n']
 
 
 def convert_to_ints(row):
     return [int(x) for x in row]
 
 
-def get_board(rows):
-    for i, row in enumerate(rows):
-        rows[i] = convert_to_ints(row.split())
-    return np.array(rows)
-
-
 def setup(lines):
     numbers = convert_to_ints(lines.pop(0).split(','))
     boards = []
 
-    for i in range(0, len(lines), 6):
-        board = get_board(lines[i+1:i+6])
-        boards.append(board)
+    for i in range(0, len(lines), 5):
+        boards.append(np.array([convert_to_ints(row.split()) for row in lines[i:i+5]]))
 
     return numbers, boards
 
@@ -58,7 +51,7 @@ def get_board_score(board_data):
     board = board_data.get('board')
     numbers = board_data.get('numbers')
     used_numbers = [n for n in numbers if np.isin(n, board)]
-    return (np.sum(board) - np.sum(used_numbers)) * numbers[-1]
+    return (np.sum(board) - sum(used_numbers)) * used_numbers[-1]
 
 
 def main():
