@@ -56,8 +56,9 @@ def get_intersection_count(lines=get_input()):
 
 
 def main():
-    print(f'Part 1 answer: {get_intersection_count()[0]}')
-    print(f'Part 2 answer: {get_intersection_count()[1]}')
+    part1, part2 = get_intersection_count()
+    print(f'Part 1 answer: {part1}')
+    print(f'Part 2 answer: {part2}')
 
 
 if __name__ == '__main__':
