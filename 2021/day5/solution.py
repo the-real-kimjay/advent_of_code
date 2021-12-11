@@ -20,7 +20,7 @@ def complete_line(line_start, line_end, pos):
 def get_line_points(line):
     line_start = line[0]
     line_end = line[1]
-
+    #Calculate slope here and then reduce code below. vertical slope below is wrong.
     if line_start[0] == line_end[0]:
         slope = 0
         line_points = complete_line(line_start, line_end, 1)

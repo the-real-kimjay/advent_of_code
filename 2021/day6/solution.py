@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 
 
 def get_input():
@@ -7,23 +6,20 @@ def get_input():
         return [int(count) for count in f.read().split(',')]
 
 
-def get_fish_count(days, fish=get_input()):
-    for day in range(days):
-        new_fish = []
-        for i, timer in enumerate(fish):
-            if timer == 0:
-                fish[i] = 6
-                new_fish.append(8)
-            else:
-                fish[i] -= 1
-        fish.extend(new_fish)
+def get_total_fish(days, fish=get_input()):
+    fish_counts = {i: (fish.count(i) if i in fish else 0) for i in range(9)}
 
-    return len(fish)
+    for day in range(days):
+        rotated = list(fish_counts.values())[1:] + list(fish_counts.values())[0:1]
+        fish_counts = dict(zip(fish_counts, rotated))
+        fish_counts[6] += fish_counts.get(8)
+
+    return sum([count for count in fish_counts.values()])
 
 
 def main():
-    print(f'Part 1 answer: {get_fish_count(80)}')
-    print(f'Part 1 answer: {get_fish_count(256)}')
+    print(f'Part 1 answer: {get_total_fish(80)}')
+    print(f'Part 1 answer: {get_total_fish(256)}')
 
 
 if __name__ == '__main__':
