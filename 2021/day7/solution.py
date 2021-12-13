@@ -7,10 +7,20 @@ def get_input():
         return [int(count) for count in f.read().split(',')]
 
 
+def get_dist_sum(dist, dist_sums={}):
+    if dist in dist_sums:
+        fuel_usage = dist_sums.get(dist)
+    else:
+        dist_sum = sum(range(dist + 1))
+        dist_sums[dist] = dist_sum
+        fuel_usage = dist_sum
+
+    return fuel_usage
+
+
 # TODO - find local min, instead of sweeping full range
 def get_min_fuel(dist_cost, positions=get_input()):
     fuel_counts = []
-    dist_sums = {}
     for i in range(min(positions), max(positions) + 1):
         total_fuel = 0
         for pos in positions:
@@ -18,13 +28,9 @@ def get_min_fuel(dist_cost, positions=get_input()):
             if dist_cost == 'low':
                 total_fuel += dist
             elif dist_cost == 'high':
-                if dist in dist_sums:
-                    total_fuel += dist_sums.get(dist)
-                else:
-                    dist_sum = sum(range(dist + 1))
-                    dist_sums[dist] = dist_sum
-                    total_fuel += dist_sum
+                total_fuel += get_dist_sum(dist)
         fuel_counts.append(total_fuel)
+
     return min(fuel_counts)
 
 
